@@ -1,9 +1,9 @@
 const { Op, fn, col, where, literal } = require('sequelize');
 const bcrypt = require('bcrypt');
 const seqClient = require('./sequelizeClient');
-const User = require("../models/User");
-const Color = require("../models/Color");
-const Category = require("../models/Category");
+const User = require("../models/user");
+const Color = require("../models/color");
+const Category = require("../models/category");
 
 class DB {
     constructor() {
