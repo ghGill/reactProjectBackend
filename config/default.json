@@ -1,0 +1,12 @@
+{
+    "app": {
+        "port":"3000"
+    },
+    "db": {
+        "host":"dpg-d15sc395pdvs73dvl9fg-a.oregon-postgres.render.com",
+        "port": "5432",
+        "database":"react_project_db",
+        "username":"gill1967",
+        "password":"WMQkD1eCAVc1c13KR1UfobFf7pljgjpD"
+    }
+}
