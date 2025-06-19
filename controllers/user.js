@@ -45,6 +45,19 @@ class userController {
             res.status(500).json({success:false, message:e.message});
         }
     }
+
+    async getUserById(req, res) {
+        try {
+            const {id} = req.params;
+
+            const user = await DB.getUserById(id);
+
+            res.status(200).json({success:true, user:user});
+        }
+        catch (e) {
+            res.status(500).json({success:false, message:e.message});
+        }
+    }
 }
 
 module.exports = new userController();

@@ -4,27 +4,23 @@ const seqClient = require('../servises/sequelizeClient');
 if (!seqClient)
     return;
 
-const User = seqClient.define(
-    'User',
+const Overview = seqClient.define(
+    'Overview',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-      name: {
-        type: DataTypes.STRING,
+      user_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
+      amount: {
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      image: {
+      date: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -34,4 +30,4 @@ const User = seqClient.define(
     },
 );
 
-module.exports = User;
+module.exports = Overview;
