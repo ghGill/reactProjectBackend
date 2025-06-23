@@ -6,17 +6,17 @@ class userController {
 
     async login(req, res) {
         try {
-            const {email, password} = req.body;
+            const { email, password } = req.body;
 
-            const user = await DB.login(email, password);
+            const { user=null, tokens=null } = await DB.login(email, password);
 
-            if (user)
-                res.status(200).json({success:true, user:user});
+            if (tokens && user)
+                res.status(200).json({ success: true, user: user, tokens: tokens });
             else
-                res.status(500).json({success:false, message:"Invalid email or password."});
+                res.status(500).json({ success: false, message: "Invalid email or password." });
         }
         catch (e) {
-            res.status(500).json({success:false, message:e.message});
+            res.status(500).json({ success: false, message: e.message });
         }
     }
 
@@ -24,14 +24,14 @@ class userController {
         try {
             const data = req.body;
 
-            const {email} = data;
+            const { email } = data;
 
             if (!email)
-                res.status(500).json({success:false, message:"User email is required."});
+                res.status(500).json({ success: false, message: "User email is required." });
 
             const emailExist = await DB.userEmailExist(email);
             if (emailExist) {
-                res.status(500).json({success:false, message:"This email is already associated with an account."});
+                res.status(500).json({ success: false, message: "This email is already associated with an account." });
                 return;
             }
 
@@ -39,23 +39,19 @@ class userController {
 
             await DB.signup(data);
 
-            res.status(200).json({success:true, user:data});
+            res.status(200).json({ success: true, user: data });
         }
         catch (e) {
-            res.status(500).json({success:false, message:e.message});
+            res.status(500).json({ success: false, message: e.message });
         }
     }
 
-    async getUserById(req, res) {
+    async getUserByToken(req, res) {
         try {
-            const {id} = req.params;
-
-            const user = await DB.getUserById(id);
-
-            res.status(200).json({success:true, user:user});
+            res.status(200).json({ success: true, user: req.user });
         }
         catch (e) {
-            res.status(500).json({success:false, message:e.message});
+            res.status(500).json({ success: false, message: e.message });
         }
     }
 }
