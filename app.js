@@ -12,6 +12,8 @@ app.use(cors({
         // For total flexibility (use with caution in production):
         callback(null, true);
     },
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	maxAge: 600, // cache preflight for 10 minutes
     credentials: true,
     exposedHeaders: ['x-access-token', 'x-refresh-token'],
 })); // Enable CORS for all origins
